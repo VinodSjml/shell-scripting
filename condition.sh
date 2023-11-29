@@ -1,3 +1,4 @@
+#!/bin/bash/
 Action=$1
 case $Action in
             start)
