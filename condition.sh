@@ -6,6 +6,9 @@ case $Action in
                 echo stopping the payment;;
             restart)
                 echo restarting the payment;;
+            *)
+                echo valid options are start, stop, restart
+                echo please run the script again;;
 esac
                 
                 
