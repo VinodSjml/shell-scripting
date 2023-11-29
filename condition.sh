@@ -7,8 +7,8 @@ case $Action in
             restart)
                 echo restarting the payment;;
             *)
-                echo valid options are start, stop, restart
-                echo please run the script again;;
+                echo -e "\e[33m valid options are start, stop, restart \e[0m"
+                echo -e "\e[33m please run the script again \e[0m" ;;
 esac
                 
                 
