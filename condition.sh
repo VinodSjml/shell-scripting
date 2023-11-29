@@ -1,4 +1,4 @@
-Action=start
+Action=$1
 case $Action in
             start)
                 echo starting the payment;;
