@@ -1,4 +1,4 @@
-Action=strat
+Action=start
 case $Action in
             start)
                 echo starting the payment;;
