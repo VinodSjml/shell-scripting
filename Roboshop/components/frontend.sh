@@ -21,7 +21,7 @@ stat(){
 
 echo -n "nginx installation status:" 
 current_date=$(date)
-echo -e "\t $current_date" &>> /tmp/frontend.logs
+echo -e "\n\t $current_date" &>> /tmp/frontend.logs
 yum install nginx -y &>> /tmp/frontend.logs
 stat $?
 
