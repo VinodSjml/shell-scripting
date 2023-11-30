@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -e
-
-if [ $uid -ne 0 ]; then
+user_id=$uid
+if [ $user_id -ne 0 ]; then
      echo -e "this script installs only when it is run by a rot user or with a sudo access \n\t Example: sudo bash wrapper.sh frontend"
 fi
 
