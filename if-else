@@ -1,0 +1,22 @@
+Action=$1
+st(){
+if [ "$Action" == "start" ]; then
+       echo starting service
+elif [ "$Action" != "start" ]; then
+       echo stopping service
+else
+       echo start is the only options
+fi
+}
+
+if [ $Action -gt 0 ];then
+      echo natural number
+      exit 0
+elif [ $Action -eq 0 ];then
+      echo number is zero
+      exit 1
+elif [ $Action -lt 0 ]; then
+      echo number is negative
+      exit 2
+else
+      st()
