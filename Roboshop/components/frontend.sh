@@ -13,7 +13,7 @@ stat(){
        echo -e "\e[32m success \e[0m"
     else 
        echo -e "\e[32m failure \e[0m"   
-       }
+}
 
 yum install nginx -y &>> /tmp/frontend.logs
 echo -n "nginx installation status:" 
