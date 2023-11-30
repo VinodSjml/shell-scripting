@@ -18,30 +18,30 @@ stat(){
     fi 
 }
 
-yum install nginx -y &>> /tmp/frontend.logs
 echo -n "nginx installation status:" 
+yum install nginx -y &>> /tmp/frontend.logs
 stat $?
 
+echo -n "starting nginx service: "
 systemctl enable nginx &>> /tmp/frontend.logs
 systemctl start nginx &>> /tmp/frontend.logs
-echo -n "starting nginx service: "
 stat $?
 
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 echo -n "downloading frontend: "
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 stat $?
 
+echo -n "sorting frontend files: " 
 cd /usr/share/nginx/html
 rm -rf * &>> /tmp/frontend.logs
 unzip /tmp/frontend.zip &>> /tmp/frontend.logs
 mv frontend-main/* .
 mv static/* .
-rm -rf frontend-main README.md
+rm -rf frontend-main README.md &>> /tmp/frontend.logs
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-echo -n "sorting frontend files: " 
 stat $?
 
+echo -n "restarting nginx servie: "
 systemctl daemon-reload
 systemctl restart nginx
-echo -n "restarting nginx servie: "
 stat $?
