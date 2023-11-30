@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bash Roboshop/$1.sh
+bash Roboshop/components/$1.sh
