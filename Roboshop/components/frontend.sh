@@ -44,3 +44,4 @@ stat $?
 systemctl daemon-reload
 systemctl restart nginx
 echo -n "restarting nginx servie: "
+stat $?
