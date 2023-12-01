@@ -30,7 +30,24 @@ echo -e "\n\t ${current_date}" &>> ${logfile}
 yum install -y mongodb-org &>> ${logfile}
 stat $?
 
-echo -n "enabling and starting ${comp_name} service :"
-systemctl enable mongod 
-systemctl start mongod
+echo -n "updating the listening state of mongodb: "
+sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 stat $?
+
+
+echo -n "enabling and starting ${comp_name} service :"
+systemctl enable mongod &>> ${logfile}
+systemctl start mongod &>> ${logfile}
+stat $?
+
+echo -n "donwloading ${comp_name} schema: "
+curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+stat $?
+
+<<comment
+cd /tmp
+unzip mongodb.zip
+cd mongodb-main
+mongo < catalogue.js
+mongo < users.js
+comment
