@@ -26,10 +26,11 @@ stat $?
 
 echo -n "installing ${comp_name} :"
 current_date=$(date)
-echo -e "\n\t ${current_date}"
+echo -e "\n\t ${current_date}" &>> ${logfile}
 yum install -y mongodb-org &>> ${logfile}
 stat $?
 
+echo -n "enabling and starting ${comp_name} service :"
 systemctl enable mongod 
 systemctl start mongod
 stat $?
