@@ -46,7 +46,7 @@ stat $?
 
 echo -n "extracting the schema: "
 cd /tmp
-unzip mongodb.zip -y
+unzip -o mongodb.zip &>> ${logfile}
 stat $?
 
 echo -n "injecting the schema: "
