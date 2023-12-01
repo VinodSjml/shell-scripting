@@ -53,6 +53,6 @@ echo -n "injecting the schema: "
 cd mongodb-main
 mongo < catalogue.js
 mongo < users.js
-start $?
+stat $?
 
 echo -e "\e[32m \t mongodb has been configured successfully \e[0m"
