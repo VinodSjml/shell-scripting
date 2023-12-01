@@ -51,8 +51,8 @@ stat $?
 
 echo -n "injecting the schema: "
 cd mongodb-main
-mongo < catalogue.js
-mongo < users.js
+mongo < catalogue.js &>> ${logfile}
+mongo < users.js &>> ${logfile}
 stat $?
 
 echo -e "\e[32m \t mongodb has been configured successfully \e[0m"
