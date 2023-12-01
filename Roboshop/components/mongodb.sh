@@ -44,10 +44,15 @@ echo -n "donwloading ${comp_name} schema: "
 curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
 stat $?
 
-<<comment
+echo -n "extracting the schema: "
 cd /tmp
-unzip mongodb.zip
+unzip mongodb.zip &>> ${logfile}
+stat $?
+
+echo -n "injecting the schema: "
 cd mongodb-main
 mongo < catalogue.js
 mongo < users.js
-comment
+start $?
+
+echo -e "\e[32m \t mongodb has been configured successfully \e[0m"
