@@ -46,7 +46,7 @@ rm -rf ${comp_name} &>> ${logfile}
 unzip -o /tmp/catalogue.zip &>> ${logfile}
 mv catalogue-main catalogue
 cd /home/roboshop/catalogue
-npm install
+npm install &>> ${logfile}
 
 
 <<COMMENT
