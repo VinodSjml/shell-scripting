@@ -33,18 +33,11 @@ yum install nodejs -y &>> ${logfile}
 stat $?
 
 id ${app_user} &>> ${logfile}
-user_check $?
-
-user_check(){
-    if [ $1 -ne 0]; then
+if [ $? -ne 0 ]; then
          echo -n "creating an application user account ${app_user}: "
          useradd ${app_user}
          stat $?
-    else 
-        echo -n "switching to application account - ${app_user}: "
-        su - ${app_user}
-        stat $?
-}
+fi
 
 
 <<COMMENT
