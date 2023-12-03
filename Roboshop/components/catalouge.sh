@@ -21,13 +21,13 @@ stat(){
 }
 
 echo -n "downloading ${comp_name} repo : "
-current_date=$(date)
-echo -e "\n\t ${current_date}" &>> ${logfile}
 yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y | bash &>> ${logfile}
 stat $?
 
 
 echo -n "installing nodejs :"
+current_date=$(date)
+echo -e "\n\t ${current_date}" &>> ${logfile}
 yum install nodejs -y &>> ${logfile}
 stat $?
 
