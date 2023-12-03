@@ -21,13 +21,13 @@ stat(){
 }
 
 echo -n "downloading ${comp_name} repo : "
-yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+current_date=$(date)
+echo -e "\n\t ${current_date}" &>> ${logfile}
+yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y | bash &>> ${logfile}
 stat $?
 
 
-echo -n "installing ${comp_name} :"
-current_date=$(date)
-echo -e "\n\t ${current_date}" &>> ${logfile}
+echo -n "installing nodejs :"
 yum install nodejs -y &>> ${logfile}
 stat $?
 
@@ -36,7 +36,7 @@ sudo su - roboshop
 user_check $?
 
 user_check(){
-       if [ $1 -eq 1 ]
+       if [ $1 -ne 0 ]
           echo "adding service account roboshop"
           sudo useradd roboshop
           sudo su - roboshop
