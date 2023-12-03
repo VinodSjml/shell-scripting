@@ -32,7 +32,7 @@ echo -e "\n\t ${current_date}" &>> ${logfile}
 yum install nodejs -y &>> ${logfile}
 stat $?
 
-id ${app_user}
+id ${app_user} &>> ${logfile}
 user_check $?
 
 user_check(){
