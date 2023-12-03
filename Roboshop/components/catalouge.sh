@@ -39,11 +39,11 @@ if [ $? -ne 0 ]; then
          stat $?
 fi
 
-echo -n "copying the ${comp_name} to ${app_user}"
+echo -n "copying the ${comp_name} to ${app_user}: "
 curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
 cd /home/${app_user}
-rm -rf ${comp_name}
-unzip -o /tmp/catalogue.zip
+rm -rf ${comp_name} &>> ${logfile}
+unzip -o /tmp/catalogue.zip &>> ${logfile}
 stat $?
 
 
