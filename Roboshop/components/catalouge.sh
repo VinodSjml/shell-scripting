@@ -40,7 +40,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -n "switching to application user account - ${app_user} : "
-su - ${app_user}
+cd /home/${app_user}
 stat $?
 
 
