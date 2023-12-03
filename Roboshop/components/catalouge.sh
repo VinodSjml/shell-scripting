@@ -39,7 +39,8 @@ if [ $? -ne 0 ]; then
          stat $?
 fi
 
-su - roboshop
+echo -n "switching to application user account - ${app_user} : "
+su - ${app_user}
 stat $?
 
 
