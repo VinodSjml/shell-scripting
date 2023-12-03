@@ -45,8 +45,13 @@ cd /home/${app_user}
 rm -rf ${comp_name} &>> ${logfile}
 unzip -o /tmp/catalogue.zip &>> ${logfile}
 stat $?
-echo -n "install npm: "
+
+echo -n "changing the ownership of the ${comp_name} directory to ${app_user}: "
 mv catalogue-main catalogue
+chown -R ${app_user}:${app_user} /home/roboshop/catalogue/
+stat $?
+
+echo -n "install npm: "
 cd /home/roboshop/catalogue
 npm install &>> ${logfile}
 stat $?
