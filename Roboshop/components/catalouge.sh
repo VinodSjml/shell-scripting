@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -e
+set -e
 user_id=$(id -u)
 comp_name=catalogue
 app_user=roboshop
@@ -36,7 +36,7 @@ id ${app_user}
 user_check $?
 
 user_check(){
-    if [ $1 -eq 1]
+    if [ $1 -ne 0]
          echo -n "creating an application user account ${app_user}: "
          useradd ${app_user}
          stat $?
