@@ -44,9 +44,12 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalog
 cd /home/${app_user}
 rm -rf ${comp_name} &>> ${logfile}
 unzip -o /tmp/catalogue.zip &>> ${logfile}
+stat $?
+echo -n "install npm: "
 mv catalogue-main catalogue
 cd /home/roboshop/catalogue
 npm install &>> ${logfile}
+stat $?
 
 
 <<COMMENT
