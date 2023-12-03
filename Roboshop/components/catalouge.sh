@@ -36,7 +36,7 @@ id ${app_user}
 user_check $?
 
 user_check(){
-    if [ $1 -ne 0]
+    if [ $1 -ne 0]; then
          echo -n "creating an application user account ${app_user}: "
          useradd ${app_user}
          stat $?
