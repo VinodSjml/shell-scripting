@@ -39,6 +39,9 @@ if [ $? -ne 0 ]; then
          stat $?
 fi
 
+su - roboshop
+stat $?
+
 
 <<COMMENT
 echo -n "updating the listening state of mongodb: "
