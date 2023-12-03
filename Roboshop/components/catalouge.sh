@@ -3,6 +3,7 @@
 set -e
 user_id=$(id -u)
 comp_name=catalogue
+app_user=roboshop
 logfile="/tmp/${comp_name}.logs"
 if [ $user_id -ne 0 ]; then
      echo -e "this script installs only when it is run by a root user or with a sudo access \n\t Example: sudo bash wrapper.sh frontend"
@@ -21,7 +22,7 @@ stat(){
 }
 
 echo -n "downloading ${comp_name} repo : "
-curl --silent --location https://rpm.nodesource.com/setup_16.x
+curl --silent --location https://rpm.nodesource.com/setup_16.x &>> ${logfile}
 stat $?
 
 
@@ -31,17 +32,20 @@ echo -e "\n\t ${current_date}" &>> ${logfile}
 yum install nodejs -y &>> ${logfile}
 stat $?
 
-echo -n "switching to service account roboshop.. "
-sudo su - roboshop
+id ${app_user}
 user_check $?
 
 user_check(){
-       if [ $1 -ne 0 ]
-          echo "adding service account roboshop"
-          sudo useradd roboshop
-          sudo su - roboshop
-       fi
+    if [ $1 -eq 1]
+         echo -n "creating an application user account ${app_user}: "
+         useradd ${app_user}
+         stat $?
+    else 
+        echo -n "switching to application account - ${app_user}: "
+        su - ${app_user}
+        stat $?
 }
+
 
 <<COMMENT
 echo -n "updating the listening state of mongodb: "
