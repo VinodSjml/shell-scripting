@@ -64,11 +64,15 @@ stat $?
 
 echo -n "creating a systemctl ${comp_name} artifact: "
 mv /home/${app_user}/${comp_name}/systemd.service /etc/systemd/system/${comp_name}.service
+stat $?
+
+echo -n "starting the ${comp_name} service : "
 systemctl daemon-reload
 systemctl enable ${comp_name}
 systemctl start ${comp_name}
-systemctl status ${comp_name} -l
+systemctl status ${comp_name} -l 
 stat $?
+
 
 
 <<COMMENT
