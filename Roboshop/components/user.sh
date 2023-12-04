@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e
 user_id=$(id -u)
 comp_name=user
 app_user=roboshop
