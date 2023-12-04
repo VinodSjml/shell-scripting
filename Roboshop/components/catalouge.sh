@@ -67,7 +67,7 @@ mv /home/${app_user}/${comp_name}/systemd.service /etc/systemd/system/${comp_nam
 systemctl daemon-reload
 systemctl enable ${comp_name}
 systemctl start ${comp_name}
-systemctl status ${comp_name -l}
+systemctl status ${comp_name} -l
 stat $?
 
 
