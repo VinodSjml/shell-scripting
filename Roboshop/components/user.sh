@@ -53,7 +53,7 @@ stat $?
 
 echo -n "generating artifacts: "
 cd /home/${app_user}/${comp_name}/
-npm install &>> ${logfile}
+npm install  
 stat $?
 
 echo -n "configuring the mongodb ip address:"
