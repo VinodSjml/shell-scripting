@@ -40,19 +40,19 @@ fi
 
 echo -n "copying the ${comp_name} to ${app_user}: "
 curl -s -L -o /tmp/user.zip "https://github.com/stans-robot-project/user/archive/main.zip"
-cd /home/${app_user}
+cd /home/${app_user}/
 rm -rf ${comp_name} &>> ${logfile}
 unzip -o /tmp/user.zip &>> ${logfile}
 stat $?
 
 echo -n "changing the ownership of the ${comp_name} directory to ${app_user}: "
-cd /home/${app_user}
+cd /home/${app_user}/
 mv user-main user
 chown -R ${app_user}:${app_user} /home/${app_user}/${comp_name}/
 stat $?
 
 echo -n "generating artifacts: "
-cd /home/${app_user}/${comp_name}
+cd /home/${app_user}/${comp_name}/
 npm install &>> ${logfile}
 stat $?
 
