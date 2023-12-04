@@ -47,13 +47,27 @@ unzip -o /tmp/catalogue.zip &>> ${logfile}
 stat $?
 
 echo -n "changing the ownership of the ${comp_name} directory to ${app_user}: "
+cd /home/${app_user}
 mv catalogue-main catalogue
-chown -R ${app_user}:${app_user} /home/roboshop/catalogue/
+chown -R ${app_user}:${app_user} /home/${app_user}/${comp_name}/
 stat $?
 
-echo -n "install npm: "
-cd /home/roboshop/catalogue
+echo -n "generating artifacts: "
+cd /home/${app_user}/${comp_name}
 npm install &>> ${logfile}
+stat $?
+
+echo -n "configuring the mongodb ip address:"
+cd /home/${app_user}/${comp_name}/
+sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' systemd.service
+stat $?
+
+echo -n "creating a systemctl ${comp_name} artifact: "
+mv /home/${app_user}/${comp_name}/systemd.service /etc/systemd/system/${comp_name}.service
+systemctl daemon-reload
+systemctl enable ${comp_name}
+systemctl start ${comp_name}
+systemctl status ${comp_name -l}
 stat $?
 
 
