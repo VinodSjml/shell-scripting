@@ -68,9 +68,9 @@ stat $?
 
 echo -n "starting the ${comp_name} service : "
 systemctl daemon-reload
-systemctl enable ${comp_name}
-systemctl start ${comp_name}
-systemctl status ${comp_name} -l 
+systemctl enable ${comp_name} &>> ${logfile}
+systemctl start ${comp_name} &>> ${logfile}
+systemctl status ${comp_name} -l &>> ${logfile}
 stat $?
 
 
