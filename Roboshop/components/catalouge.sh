@@ -22,7 +22,7 @@ stat(){
 }
 
 echo -n "downloading ${comp_name} repo : "
-curl --silent --location https://rpm.nodesource.com/setup_16.x &>> ${logfile}
+yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y &>> ${logfile}
 stat $?
 
 
