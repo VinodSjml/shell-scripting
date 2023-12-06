@@ -1,7 +1,7 @@
 #!/bin/bash
 
 user_id=$(id -u)
-comp_name=user
+comp_name=cart
 app_user=roboshop
 logfile="/tmp/${comp_name}.logs"
 if [ $user_id -ne 0 ]; then
