@@ -21,7 +21,7 @@ stat(){
 }
 
 echo -n "downloading ${comp_name} repo : "
-yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y &>> ${logfile}
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -  &>> ${logfile}
 stat $?
 
 
