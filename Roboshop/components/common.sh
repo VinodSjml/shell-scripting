@@ -77,7 +77,7 @@ Nodejs(){
     
     echo -n "generating artifacts: "
     cd /home/${app_user}/${comp_name}/
-    npm install
+    npm install &>> ${logfile}
     stat $?
 
     ip_setup #calling ip_setup to set up ip address of servers
