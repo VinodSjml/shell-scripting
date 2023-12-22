@@ -22,9 +22,17 @@ echo -n "exctracting default password for mysql: "
 default_password=$(grep "password" /var/log/mysqld.log | awk -F " " '{print $NF}')
 stat $?
 
-echo "show databases;" |mysql -uroot -pRoboShop@1
+echo "show databases;" |mysql -uroot -pRoboShop@1 &>> ${logfile}
 if [ $? -ne 0 ]; then
-   echo -n "changing the default password: "
-   echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$default_password &>> ${logfile}
-   stat $?
+    echo -n "changing the default password: "
+    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$default_password &>> ${logfile}
+    stat $?
+fi
+
+
+echo "show plugins;" | mysql -uroot -pRoboShop@1 | grep validate_password &>> ${logfile}
+if [ $? -eq 0 ]; then
+    echo -n "uninstalling validate_password plugin: "
+    echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 &>> ${logfile}
+    stat $?
 fi
