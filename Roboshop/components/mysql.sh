@@ -23,7 +23,7 @@ default_password=$(grep "password" /var/log/mysqld.log | awk -F " " '{print $NF}
 stat $?
 
 echo "show databases;" |mysql -uroot -pRoboshop@1
-if { $? -ne 0}; then
+if [ $? -ne 0 ]; then
    echo -n "changing the default password: "
    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$default_password &>> ${logfile}
    stat $?
