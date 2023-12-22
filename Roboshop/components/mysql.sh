@@ -43,14 +43,14 @@ stat $?
 
 echo -n "extracting the ${comp_name} schema and injecting it: "
 cd /tmp
-unzip ${comp_name}.zip
+unzip ${comp_name}.zip &>> ${logfile}
 cd ${comp_name}-main
-mysql -u root -pRoboShop@1 <shipping.sql
+mysql -u root -pRoboShop@1 <shipping.sql &>> ${logfile}
 stat $?
 
-echo "verifying ${comp_name} database:"
+echo -n "verifying ${comp_name} database:"
 echo "show databases;" | mysql -uroot -pRoboShop@1 | grep cities &>> ${logfile}
-if [ $? - eq 0 ]; then
+if [ $? -eq 0 ]; then
     echo "mysql has been configured successfully"
 fi
 stat $?
