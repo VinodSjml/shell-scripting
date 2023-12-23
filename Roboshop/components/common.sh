@@ -89,7 +89,7 @@ Maven(){
     echo -n "performing Maven cleanup:"
     mvn clean package &>> ${logfile}
     mv target/shipping-1.0.jar shipping.jar
-    stat$?
+    stat $?
 }
 
 Java(){
