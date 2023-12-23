@@ -45,7 +45,7 @@ echo -n "extracting the ${comp_name} schema and injecting it: "
 cd /tmp
 unzip ${comp_name}.zip &>> ${logfile}
 cd ${comp_name}-main
-mysql -u root -pRoboShop@1 <shipping.sql &>> ${logfile}
+mysql -uroot -pRoboShop@1 <shipping.sql &>> ${logfile}
 stat $?
 
 echo -n "verifying ${comp_name} database:"

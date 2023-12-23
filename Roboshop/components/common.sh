@@ -84,3 +84,25 @@ Nodejs(){
 
     configure_service #create a systemctl artifact for the component
 }
+
+Maven(){
+    echo -n "performing Maven cleanup:"
+    mvn clean package 
+    mv target/shipping-1.0.jar shipping.jar
+    stat$?
+}
+
+Java(){
+    
+    echo "configuring ${comp_name}..."
+    echo -n "installing maven :"
+    yum install maven -y
+    stat $?
+
+    create_user  #calling create_user function to create a service account
+
+    download_and_extract #calling donwload and extract function to download files and configure it for service account
+
+    Maven #calling Maven function to cleanup maven package
+
+}
