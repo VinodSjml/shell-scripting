@@ -86,6 +86,7 @@ Nodejs(){
 }
 
 Maven(){
+
     echo -n "performing Maven cleanup:"
     mvn clean package &>> ${logfile}
     mv target/shipping-1.0.jar shipping.jar
@@ -103,6 +104,7 @@ Java(){
 
     download_and_extract #calling donwload and extract function to download files and configure it for service account
 
-    Maven #calling Maven function to cleanup maven package
+    cd /home/${app_user}/${comp_name}/
 
+    Maven #calling Maven function to cleanup maven package
 }
