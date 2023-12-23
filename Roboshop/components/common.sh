@@ -31,7 +31,7 @@ fi
 download_and_extract(){
     
   echo -n "copying the ${comp_name} to ${app_user}: "
-  curl -s -L -o /tmp/cart.zip "https://github.com/stans-robot-project/${comp_name}/archive/main.zip"
+  curl -s -L -o /tmp/${comp_name}.zip "https://github.com/stans-robot-project/${comp_name}/archive/main.zip"
   cd /home/${app_user}/
   rm -rf ${comp_name} &>> ${logfile}
   unzip -o /tmp/${comp_name}.zip &>> ${logfile}
