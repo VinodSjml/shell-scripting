@@ -46,6 +46,11 @@ rm -rf frontend-main README.md &>> $logfile
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
+echo -n "updating backend components in reverse proxy file:"
+for component in cart catalogue user shipping ; do
+   sed -i -e "/${component}/s/localhost/${component}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
+done
+
 echo -n "restarting nginx servie: "
 systemctl daemon-reload
 systemctl restart nginx
