@@ -47,8 +47,8 @@ download_and_extract(){
 ip_setup(){
     echo -n "configuring the mongodb ip address:"
     cd /home/${app_user}/${comp_name}/
-    sed -ie 's/REDIS_ENDPOINT/redis.roboshop.internal/' systemd.service
-    sed -ie 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' systemd.service
+    sed -ie 's/CARTENDPOINT/cart.roboshop.internal/' systemd.service
+    sed -ie 's/DBHOST/catalogue.roboshop.internal/' systemd.service
     stat $?
 }
 
@@ -107,4 +107,8 @@ Java(){
     cd /home/${app_user}/${comp_name}/
 
     Maven #calling Maven function to cleanup maven package
+
+    ip_setup #calling ip_setup to set up ip address of servers
+
+    configure_service #create a systemctl artifact for the component
 }
