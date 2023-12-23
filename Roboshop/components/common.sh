@@ -87,16 +87,16 @@ Nodejs(){
 
 Maven(){
     echo -n "performing Maven cleanup:"
-    mvn clean package 
+    mvn clean package &>> ${logfile}
     mv target/shipping-1.0.jar shipping.jar
     stat$?
 }
 
 Java(){
-    
+
     echo "configuring ${comp_name}..."
     echo -n "installing maven :"
-    yum install maven -y
+    yum install maven -y &>> ${logfile}
     stat $?
 
     create_user  #calling create_user function to create a service account
