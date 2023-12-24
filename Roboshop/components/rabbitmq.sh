@@ -22,7 +22,7 @@ systemctl status rabbitmq-server -l &>> ${logfile}
 stat $?
 
 echo -n "validating if user account already exists: "
-rabbitmqctl list_users | grep roboshop
+rabbitmqctl list_users | grep roboshop &>> ${logfile}
 if [ $? -ne 0 ] ; then
     echo -n "creating user account for rabbitmq:"
     rabbitmqctl add_user roboshop roboshop123
@@ -32,8 +32,8 @@ else
 fi
 
 echo -n "setting up permissions:"
-rabbitmqctl set_user_tags roboshop administrator
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl set_user_tags roboshop administrator &>> ${logfile}
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> ${logfile}
 stat $?
 
 echo "rabbitmq has been configured successfully"
