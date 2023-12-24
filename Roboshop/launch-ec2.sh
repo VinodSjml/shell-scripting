@@ -11,4 +11,4 @@ instance_type="t2.micro"
 secgrp_id="sg-008477cb2de2ff3b0"
 
 echo -e "\e[32m launching ${component} server \e[0m"
-aws ec2 run-instances --image-id ${ami_id} --count 1 --instance-type ${instance_type} --security-group-ids sg-903004f8 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${component}}]"
+aws ec2 run-instances --image-id ${ami_id} --count 1 --instance-type ${instance_type} --security-group-ids ${secgrp_id} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${component}}]"
