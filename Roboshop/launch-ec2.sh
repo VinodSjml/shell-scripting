@@ -16,5 +16,5 @@ private_ip=$(aws ec2 run-instances --image-id ${ami_id} --count 1 --instance-typ
 echo "${component} server has been launched and its private ip is ${private_ip}"
 
 sed -e 's/component/${component}/' -e 's/IPAddress/${private_ip}/' route53.json > /tmp/r53.json
-aws route53 change-resource-record-sets --hosted-zone-id ${hostedzone_id} --change-batch file://tmp/r53.json
+aws route53 change-resource-record-sets --hosted-zone-id ${hostedzone_id} --change-batch file:///tmp/r53.json
 echo "${component}.roboshop.internal is now ready to access"
